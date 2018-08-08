@@ -10,3 +10,15 @@ create table "user"."user"
 -- Insert test user
 
 insert into "user".user (user_name, password_md5) values ('jcmatase', md5('123'));
+
+-- How to create a SP
+
+create or replace function list_users() RETURNS setof "user".user AS
+    $BODY$
+	  	select * from "user".user;
+ 	$BODY$
+ 	LANGUAGE 'sql';
+
+-- How to invoke a SP
+
+select * from list_users();
